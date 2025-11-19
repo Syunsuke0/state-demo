@@ -6,17 +6,24 @@ const randomFruit = () => {
   return choices[Math.floor(Math.random() * choices.length)];
 };
 
-const FruitClicker = () => {
-  const [fruits, setFruits] = useState([{ id: uuid(), emoji: randomFruit() }]);
+export const FruitClicker = () => {
+  const [fruits, setFruits] = useState([{ id: uuid(), fruit: randomFruit() }]);
   const addFruit = () => {
     setFruits((prevFruits) => [
       ...prevFruits,
-      { id: uuid(), emoji: randomFruit() },
+      { id: uuid(), fruit: randomFruit() },
     ]);
   };
   const deleteFruit = (id) => {
     setFruits((prevFruits) => {
       return prevFruits.filter((e) => e.id !== id);
+    });
+  };
+  const makeEverythingStrawberry = () => {
+    setFruits((prevFruits) => {
+      return prevFruits.map((fruit) => {
+        return { ...fruit, fruit: "🍓" };
+      });
     });
   };
 
@@ -28,12 +35,11 @@ const FruitClicker = () => {
           key={e.id}
           style={{ fontSize: "4rem" }}
         >
-          {e.emoji}
+          {e.fruit}
         </span>
       ))}
       <button onClick={addFruit}>絵文字を追加する</button>
+      <button onClick={makeEverythingStrawberry}>すべてイチゴにする</button>
     </div>
   );
 };
-
-export default FruitClicker;

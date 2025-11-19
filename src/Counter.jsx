@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const Counter = () => {
+export const Counter = () => {
   const [scores, setScores] = useState({ p1Score: 0, p2Score: 0 });
   const addP1Score = () => {
     setScores((prevScores) => {
@@ -21,5 +21,3 @@ const Counter = () => {
     </div>
   );
 };
-
-export default Counter;
